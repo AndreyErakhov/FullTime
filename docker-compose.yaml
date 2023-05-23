@@ -1,0 +1,19 @@
+version: '3.3'
+
+services:
+  front_1:
+    image: node:latest
+    container_name: front_1
+    env_file: ~/.env.development
+    ports:
+      - 85:3000
+    working_dir: /usr/src/app
+    volumes:
+      - ./build:/usr/src/app
+    entrypoint: [ "/bin/bash", "-c" ]
+    command:
+      - |
+        npm install -g npm@9.4.0
+        npm i -g serve
+        ls 
+        serve -d -p 3000 -s ./

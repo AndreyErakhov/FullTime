@@ -1,0 +1,91 @@
+.content__block {
+  height: 700px;
+}
+.content{
+  background-color: rgba(190, 190, 190, 0.13);
+  box-shadow: 0px 8px 32px 5px rgba(31, 38, 135, 0.37);
+  border-radius: 15px;
+  margin-top: 14px;
+  min-height: 625px;
+  height: calc(100% - 600px);
+  overflow: scroll;
+}
+.content::-webkit-scrollbar {
+  height: 5px;
+}
+
+.content::-webkit-scrollbar {
+  width: 5px; /* Ширина всего элемента навигации */
+}
+
+/* Firefox */
+.content {
+  scrollbar-width: thin;
+  scrollbar-color: #FFFFFF #DFE9EB;
+}
+
+/* Chrome, Edge and Safari */
+.content::-webkit-scrollbar {
+  width: 5px;
+}
+.content::-webkit-scrollbar-track {
+  border-radius: 20px;
+  background: none;
+  margin: 20px;
+  border: 0px solid #FFFFFF;
+}
+
+.content::-webkit-scrollbar-track:hover {
+  background: none;
+}
+
+.content::-webkit-scrollbar-track:active {
+  background: none;
+}
+
+.content::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #FFFFFF;
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+  background-color: #FFFFFF;
+}
+
+.content::-webkit-scrollbar-thumb:active {
+  background-color: #FFFFFF;
+}
+
+
+.blob{
+  position: absolute;
+  z-index: -1;
+  top: 260px;
+  filter: blur(7px);
+  width: 450px;
+  height: 450px;
+  background: linear-gradient(180deg, rgba(38 140 191 / 44%) 31.77%, #074fae 100%);
+  mix-blend-mode: color-dodge;
+  animation: move 25s infinite alternate;
+  transition: 1s cubic-bezier(0.07, 0.8, 0.16, 1);
+}
+@-webkit-keyframes move{
+    from{
+      transform: translate(-100px, -50px) rotate(-90deg);
+      border-radius: 24% 76% 35% 65% / 27% 36% 64% 73%;
+    }
+    to{
+      transform: translate(500px, 100px) rotate(-10deg);
+      border-radius: 76% 24% 33% 67% / 68% 55% 45% 32%;
+    }
+}
+@keyframes move{
+    from{
+      transform: rotate(-90deg);
+      border-radius: 24% 76% 35% 65% / 27% 36% 64% 73%;
+    }
+    to{
+      transform: translate(500px, 100px) rotate(-10deg);
+      border-radius: 76% 24% 33% 67% / 68% 55% 45% 32%;
+    }
+}

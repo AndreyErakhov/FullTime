@@ -1,0 +1,12 @@
+.change__button{
+    display: flex;
+    align-items: center;
+}
+.change__button p{
+    color: #3C43FF;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 155%;
+    margin-left: 10px;
+    letter-spacing: 0.01em;
+}

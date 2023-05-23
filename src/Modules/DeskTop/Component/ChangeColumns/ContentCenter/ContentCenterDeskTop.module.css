@@ -1,0 +1,67 @@
+.content{
+    position: relative;
+    margin-top: -65px;
+    height: 100%;
+}
+.content__block{
+    display: flex;
+    justify-content: center;
+    height: 97%;
+}
+.content__columns{
+   height: 100%;
+}
+.content__center{
+    position: sticky;
+    right: 0px;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(2.5px);
+    border-radius: 0 15px 15px 0;
+}
+
+.content__columns__center{
+    display: grid;
+    grid-template-columns: repeat( 230, 0fr);
+    height: 100%;
+}
+.content__btn{
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 300px;
+    margin-left: 15px;
+    min-width: 200px;
+}
+.content__btn p{
+    font-size: 18px;
+    margin-left: 12px;
+}
+.img__ready{
+    position: sticky;
+    position: -webkit-sticky;
+    right: 0;
+    top: 0;
+}
+.btn__column{
+    position: sticky;
+    margin-left: 135px;
+    top: 540px;
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
+}
+.box__ready{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.add__elipse_btn{
+    position: sticky;
+    left: 1330px;
+    top: 540px;
+    z-index: 2;
+}

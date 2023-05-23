@@ -1,0 +1,13 @@
+.ready__block{
+    display: flex;
+    justify-content: flex-end;
+}
+.ready__btn{
+    display: flex;
+    align-items: center;
+}
+.ready__btn p{
+    color: #3C43FF;
+    font-size: 18px;
+    margin-left: 3px;
+}

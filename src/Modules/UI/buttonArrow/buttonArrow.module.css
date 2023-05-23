@@ -1,0 +1,10 @@
+.arrowButton{
+    position: absolute;
+    width: 100px;
+    height: 50px;
+    left:0;
+    top:0;
+    border: 0.5px solid #787878;
+    border-radius: 15px 0px;
+    padding: 15px 25px;
+}

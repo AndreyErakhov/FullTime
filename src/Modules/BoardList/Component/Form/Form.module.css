@@ -1,0 +1,196 @@
+.modal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px); 
+    position: fixed; 
+    z-index: 1; 
+    top: 0;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s;
+}
+.modal.active{
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal__content{
+    width: 600px;
+    height: 360px;
+    background: #1F1F47;
+    border: 1px solid #1F2687;
+    box-shadow: 0px 4px 10px 10px rgba(31, 38, 135, 0.25);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.modal__box{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal__text{
+    display: flex;
+    font-size: 24px;
+    color: #FFFFFF;
+    margin: 20px 0 27px;
+}
+.modal__btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    padding: 12px 30px;
+    width: 116px;
+    height: 40px;
+    margin-top: 40px;
+    margin-bottom: 35px;
+    transition: 0.5s;
+}
+.rotate{
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+}
+.active__btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+    border: 2px solid #FFFFFF;
+    border-radius: 20px;
+    padding: 12px 30px;
+    width: 116px;
+    height: 40px;
+    margin-top: 40px;
+    margin-bottom: 35px;
+    transition: 0.5s;
+}
+
+form{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+button p {
+    font-size: 14px;
+    line-height: 155%;
+    color: #FFFFFF;
+}
+
+.modal__btn-p{
+    margin-bottom: 27px;
+}
+
+.modal__btm_img{
+    position: absolute;
+    top: 15px;
+    right: -75px;
+}
+
+.hidden {
+    opacity: 0;
+    height: 0;
+    width: 0;
+    line-height: 0;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
+
+.App-header {
+    padding-top: 20px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    color: #fff;
+  }
+  
+
+  .label__text{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 155%;
+    letter-spacing: 0.01em;
+    color: #FFFFFF;
+    cursor: pointer;
+    margin-bottom: 27px;
+    margin-top: 5px;
+  }
+  
+  .button__cropped {
+    position: absolute;
+    top: 111%;
+    left: 34%;
+    cursor: pointer;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    background-color: #1F1F47;
+    color: rgba(255, 255, 255, 0.5);
+    padding: 12px 30px;
+    transition: 0.4s;
+    z-index: 3;
+  }
+  .button__cropped:hover{
+    color: #FFFFFF;
+    border: 2px solid #FFFFFF;
+  }
+  
+  .cropped__image {
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+  }
+  
+  .cropped__image_container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  ._coverImage-holder  {
+    color: #FFFFFF;
+    cursor: pointer;
+  }
+  
+  .crop__container {
+    position: absolute;
+    left: -90px;
+    top: 18px;
+    z-index: 2;
+    height: 272px;
+    width: 590px;
+    background-color: #3f3f8a;
+  }
+  
+  .controls {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    position: absolute;
+    bottom: -15px;
+  }
+
+  .reactEasyCrop_Container2{
+    background-color: #9999a1 !important;
+  }
+

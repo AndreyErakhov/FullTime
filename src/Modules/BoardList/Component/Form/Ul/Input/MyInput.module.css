@@ -1,0 +1,32 @@
+.modal__input{
+    border: none;
+    width: 246px;
+    color: rgba(255, 255, 255, 0.5);
+    background: #1F1F47;
+    width: 408px;
+    color: #FFFFFF;
+    font-size: 20px;
+    line-height: 150%;
+}
+.modal__boardеу{
+    height: 3px;
+    width: 408px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+}
+ .modal__boardеу::after {
+    background-color: #FFFF;
+    display: block;
+    content: '';
+    height: 3px;
+    width: 0%;
+    border-radius: 2px;
+    transform-origin: left;
+    -webkit-transition: width .5s ease-in-out;
+    -moz--transition: width .5s ease-in-out;
+    transition: width .5s ease-in-out;
+}
+
+.modal__input:focus~ .modal__boardеу:after {
+    width: 100%;
+} 

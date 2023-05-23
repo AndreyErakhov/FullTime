@@ -1,0 +1,10 @@
+.cropper__block{
+    width: 150px;
+    height: 150px;
+}
+
+.cropper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

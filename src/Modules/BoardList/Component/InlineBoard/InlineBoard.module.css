@@ -1,0 +1,11 @@
+.inline__h1{
+    color: #FFFF;
+    line-height: 45px;
+    font-size: 30px;
+}
+.inline__box{
+    height: 2px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    margin-bottom: 13px;
+}

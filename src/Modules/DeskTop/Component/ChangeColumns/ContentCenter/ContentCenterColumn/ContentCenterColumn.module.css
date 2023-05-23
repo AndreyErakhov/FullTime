@@ -1,0 +1,122 @@
+.column {
+    position: relative;
+    animation: ani 2s forwards;
+}
+@keyframes ani {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+  }
+.block {
+    position: absolute;
+    right: 0;
+    top: 60px;
+    width: 2px;
+    background: rgba(176, 193, 206, 0.5);
+    border-radius: 5px;
+    margin-bottom: 60px;
+    height: -webkit-fill-available;
+}
+.column__block{
+    min-width: 230px;
+    height: 100%;
+}
+.column__title{
+    position: relative;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    margin: 22px 0 30px;
+    padding: 0 30px;
+    font-size: 18px;
+    color: #FFFFFF;
+
+}
+.inline__block{
+    width: 2px;
+    height: 94%;
+    background: rgba(176, 193, 206, 0.5);
+    border-radius: 5px;
+}
+.column__input{
+    background-color: transparent;
+    color: #FFFFFF;
+    font-size: 18px;
+    
+}
+.column__btn{
+    position: absolute;
+    right: -25px;
+    top: 2px;
+}
+
+/* CONTENT*/
+
+
+
+.container{
+    position: absolute;
+    right: 44px;
+    top: 50px;
+    z-index: 2;
+    text-align: center;
+    background: #1F1F47;
+    border: 1px solid #1F2687;
+    width: 101px;
+    height: 50px;
+    border-radius: 10px 0px 10px 10px;
+    color: #FFFFFF;
+    font-size: 14px;
+    line-height: 155%;
+    transform: scale(0);
+}   
+
+.container.active {
+    transform: scale(1);
+    position: absolute;
+    right: -28px;
+    top: 22px;
+    z-index: 2;
+}
+.container__box{
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.box:hover{
+    width: 40px;
+    height: 24px;
+    background: #1B1B4B;
+    border: 1px solid #1F2687;
+    border-radius: 5px;
+}
+.box{
+    width: 40px;
+    height: 24px;
+}
+.box__text{
+    font-size: 14px;
+}
+.column:last-child .block{
+    display: none;
+}
+
+
+
+.title__block{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 20px;
+    line-height: 150%;
+    letter-spacing: 0.01em;
+    height: 100%;
+}
+.title__block p {
+    position: sticky;
+    top: 310px;
+    width: 230px;
+}

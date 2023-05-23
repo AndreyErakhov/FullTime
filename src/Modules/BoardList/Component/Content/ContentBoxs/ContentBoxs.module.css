@@ -1,0 +1,16 @@
+.content__boards{
+    padding: 23px 0 20px;
+    display: flex;
+    justify-content: space-evenly;
+    width: 55%;
+}
+
+.content__boards p{
+    font-size: 18px;
+    width: 150px;
+    text-align: center;
+    color: #FFFFFF;
+}
+.content__border{
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+}

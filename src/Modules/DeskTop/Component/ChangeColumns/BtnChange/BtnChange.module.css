@@ -1,0 +1,14 @@
+.change{
+    display: flex;
+    justify-content: space-between;
+}
+.change__button{
+    display: flex;
+    align-items: center;
+}
+
+.change__button p{
+    margin-left: 10px;
+    font-size: 18px;
+    color:  #3C43FF;
+}

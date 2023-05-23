@@ -1,0 +1,36 @@
+.content__center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 89%;
+    opacity: 0;
+    animation: ani 2.5s forwards;
+}
+  
+  @keyframes ani {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+  }
+
+.content__box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.content__button p {
+    margin-left: 10px;
+}
+
+.content__box p {
+    font-size: 20px;
+    line-height: 150%;
+    color: #FFFFFF;
+}
+
+.content__box button{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
