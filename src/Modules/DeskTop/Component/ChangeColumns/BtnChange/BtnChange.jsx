@@ -4,13 +4,14 @@ import BtnColumns from '../BtnColumns/BtnColumns'
 
 
 const BtnChange = (props) => {
+
     return(
         <div className={classes.change}>
             {props.columns.length 
             ?<BtnColumns activeModal={props.activeModal}/>
             :<button></button>
             }
-            <button className={classes.change__button} onClick={props.active}>
+            <button className={classes.change__button} onClick={props.activeContentAddColumn}>
                 <img src={ChangeColumns} alt='change'/>
                 <p>Изменить столбцы</p>
             </button>

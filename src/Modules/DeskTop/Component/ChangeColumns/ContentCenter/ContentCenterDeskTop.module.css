@@ -1,7 +1,7 @@
 .content{
     position: relative;
-    margin-top: -65px;
     height: 100%;
+    margin-bottom: -80px;
 }
 .content__block{
     display: flex;
@@ -21,7 +21,7 @@
 
 .content__columns__center{
     display: grid;
-    grid-template-columns: repeat( 230, 0fr);
+    grid-template-columns: repeat(10000, minmax(280px, 1fr));
     height: 100%;
 }
 .content__btn{

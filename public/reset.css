@@ -5,7 +5,11 @@
 
 }
 body{
+<<<<<<< public/reset.css
     background-color: #1F1F47;    
+=======
+    background-color: #1F1F47;
+>>>>>>> public/reset.css
 }
 body {
     overflow: auto;

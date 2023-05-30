@@ -13,12 +13,12 @@
     width: 2px;
     background: rgba(176, 193, 206, 0.5);
     border-radius: 5px;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
     height: -webkit-fill-available;
 }
 .column__block{
     min-width: 230px;
-    height: 100%;
+    height: calc(90% - 5%);
 }
 .column__title{
     position: relative;

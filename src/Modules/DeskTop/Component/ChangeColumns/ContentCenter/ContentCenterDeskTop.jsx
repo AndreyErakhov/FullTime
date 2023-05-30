@@ -11,25 +11,17 @@ const ContentCenterDeskTop = (props) => {
         {props.columns.length 
         
         ? <>
-        <button className={classCenter.add__elipse_btn} onClick={() => props.activeModal(true)}>
-                <img src={AddElipseBtn} alt="AddElipseBtn" />
-            </button>
         <div className={classCenter.content}>
 
                 <div className={ props.columns.length ? classCenter.content__columns : classCenter.content__block}>
                     <div className={classCenter.content__columns__center}>
 
                         {props.columns.map(column  => {
-                        
                         return <ContentCenterColumn
-                        
-                        comment={props.comment}
-                        columnTitle={props.columnTitle}
-                        textValue={props.textValue} 
+                        taskTitle={props.taskTitle}
                         column={column} 
                         key={column.columnId} 
-                        setColumns={props.setColumns}
-                        
+
                         dragOverHandler={props.dragOverHandler}
                         dragLeaveHandler={props.dragLeaveHandler}
                         dragStartHandler={props.dragStartHandler}
@@ -38,16 +30,19 @@ const ContentCenterDeskTop = (props) => {
                         dropCardHandler={props.dropCardHandler}
                         />
                         })} 
-                        
                     </div>
                 </div>
             </div>
-            </>
+            <button className={classCenter.add__elipse_btn} onClick={() => props.activeModal(true)}>
+                <img src={AddElipseBtn} alt="AddElipseBtn" />
+            </button>
+
+        </>
         : <div className={classes.cantant__center}>
                 <div className={classes.contant__box}>
                     <p>Эта доска пустая. Создайте первый</p>
                     <p>столбик</p>
-                    <button className={classes.contant__button} onClick={props.active}>
+                    <button className={classes.contant__button} onClick={props.activeContentAddColumn}>
                         <img src={ChangeColumnsWhite} alt='column'/><p>Изменить столбцы</p>
                     </button>
                 </div>

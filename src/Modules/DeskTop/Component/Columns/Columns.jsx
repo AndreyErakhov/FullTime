@@ -8,22 +8,22 @@ import Card from './Card/Card';
 
 
 
-const Columns = (props) => {
+const Columns = ({columnTitle,tasks,left,right,remove,column,columns,setColumns,sortCards}) => {
 
     const [activeBox,setActiveBox] = useState(false);
     // eslint-disable-next-line no-unused-vars
-    const [value, setValue] = useState('')
-    const [text, setText] = useState(16)
-
+    const [value, setValue] = useState(column.columnTitle)
+    const [text, setText] = useState(18)
+    console.log(value)
     function textValue(e) {
         e.preventDefault()
         setValue(e.target.value)
-        if(props.column.columnTitle.length >= 16){
-            setText(props.column.columnTitle.length)
-        }else if (props.column.columnTitle.length <= 16){
-            setText(16)
+        if(column.columnTitle.length >= 18){
+            setText(column.columnTitle.length)
+        }else if (column.columnTitle.length <= 18){
+            setText(18)
         }
-        props.column.columnTitle = e.target.value 
+        column.columnTitle = e.target.value 
     }
    
     function active(){
@@ -46,7 +46,7 @@ const Columns = (props) => {
                             autoComplete="off"
                             placeholder='Название столбца'
                             onChange={textValue}
-                            value={props.column.columnTitle}
+                            value={value}
                         />
                         
                         <button className={clasColumns.column__btn} onClick={active}>
@@ -59,22 +59,23 @@ const Columns = (props) => {
                         <div className={ activeBox ? `${clasColumns.container} ${clasColumns.active}` : clasColumns.container}>
                             <p className={clasColumns.box__text}>Уверены?</p>
                             <div className={clasColumns.container__box} >
-                                <button className={clasColumns.box} onClick={() => props.remove(props.column)}>Да</button>
+                                <button className={clasColumns.box} onClick={() => remove(column)}>Да</button>
                                 <button className={clasColumns.box} onClick={() => setActiveBox(false)}>Нет</button>
                             </div>
                         </div>
                     </div>
 
-                    { props.tasks.length
+                    { tasks.length
                     ? <>
-                        {props.tasks.map( task =>{
+                        {tasks.map( task =>{
+
                         return (
                         <Card 
                         taskTitle={task.taskTitle}
-                        comment={task.comment}
-                        column={props.value} 
+                        taskDescription={task.taskDescription}
+                        columnTitle={columnTitle} 
                         task={task} 
-                        key={task.id}
+                        key={task.taskId}
                         />
                                )
                            }
@@ -85,10 +86,10 @@ const Columns = (props) => {
                     </div>
                     }
                     <div className={clasColumns.btn__column}>
-                    <button onClick={e => props.left(e, props.column.columnOrder)} className={ props.columns.length === 1 ? clasColumns.btn__none : clasColumns.btn__left}>
+                    <button onClick={e => left(e, column.columnOrder)} className={columns.length === 1 ? clasColumns.btn__none : clasColumns.btn__left}>
                         <img src={LeftArrow} alt="LeftArrow" />
                     </button>
-                    <button onClick={e => props.right(e, props.column.columnOrder)} className={ props.columns.length === 1 ? clasColumns.btn__none : clasColumns.btn__right}>
+                    <button onClick={e => right(e, column.columnOrder)} className={ columns.length === 1 ? clasColumns.btn__none : clasColumns.btn__right}>
                         <img src={RightArrow} alt="RightArrow" />
                     </button>
                     </div>

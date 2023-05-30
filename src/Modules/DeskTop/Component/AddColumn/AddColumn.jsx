@@ -6,21 +6,21 @@ import ContentCenter from "./ContentCenter/ContentCenter"
 const AddColumn = (props) => {
     return(
         <div className="add__column">
-            <BtnReady active={props.active}/>
+            <BtnReady activeContentColumns={props.activeContentColumns}/>
             <ContentBlock>
-                <button className={classes.btn__column} onClick={props.active}>
+                <button className={classes.btn__column} onClick={props.activeContentColumns}>
                     <img className={classes.img__ready} src={EllipseReady} alt='ready'/>
                 </button>
                 <ContentCenter 
-                setTitle={props.setTitle}
+                setTaskTitle={props.setTaskTitle}
                 left={props.left}
                 sortColumns={props.sortColumns}
                 right={props.right}
-                textValue={props.textValue} 
-                setTextValue={props.setTextValue} 
+                columnTitle={props.columnTitle} 
+                // setColumnTitle={props.setColumnTitle} 
                 addNewColumn={props.addNewColumn} 
                 columns={props.columns} 
-                active={props.active}
+                // activeContentColumns={props.activeContentColumns}
                 setColumns={props.setColumns}
                 sortCards={props.sortCards}
                 />

@@ -28,7 +28,7 @@ const ContentCenterColumn = (props) => {
                         taskTitle={task.taskTitle}
                         taskDescription={task.taskDescription}
                         task={task} 
-                        key={task.id}
+                        key={task.taskId}
                         column={props.column}
                         dragOverHandler={props.dragOverHandler}
                         dragLeaveHandler={props.dragLeaveHandler}

@@ -1,38 +1,42 @@
-import { useState } from "react"
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from "react"
 import Header from "../UI/Header/Header"
 import classes from './DesKtop.module.css'
 import AddColumn from "./Component/AddColumn/AddColumn"
 import ChangeColumns from "./Component/ChangeColumns/ChangeColumns"
 import InlineBlock from "./Component/InlineBlock/InlineBlock"
 import ModalColumn from "./Component/ModalColumn/ModalColumn"
-// import globalService from "../../API/PostService"
-// import { useLocation } from "react-router-dom"
-// import queryString from "query-string"
+import globalService from "../../API/PostService"
+import { useLocation } from "react-router-dom"
+import queryString from "query-string"
+import Loading from "../BoardList/Component/Loading/Loading"
 
 const DeskTop = () => {
-    const [active,setActive] = useState(false);
+    const [active, setActive] = useState(false);
     const [modalActive,setModalActive] = useState(false);
     const [columns, setColumns] = useState([]);
     const [currentBoard, setCurrentBoard] = useState(null)
     const [currentItem, setCurrentItem] = useState(null)
     const [taskTitle, setTaskTitle] = useState('')
     const [taskDescription, setTaskDescription] = useState('');
+    const [boardTitle, setBoardTitle] = useState('Загрузка ...')
+    const [newColumns, setNewColumns] = useState([])
+    const [postsLoading, setPostsLoading] = useState(false)
 
+    let location = useLocation()
+    const query = queryString.parse(location.search)
+    const boardID = {BoardID:query.BoardID}
 
-    // let location = useLocation()
-    // const query = queryString.parse(location.search)
-    // const boardID = {BoardID:query.BoardID}
-    // useEffect(() => {
-        
-    //     const desktopDataAPI = async () => {
-    //         setPostsLoading(true)
-    //         const postsRequest = await globalService('GetColumns',boardID);
-    //         setColumns(postsRequest.columns);
-    //         setPostsLoading(false)
-    //      }
-    //      desktopDataAPI();
-    //    }, []);
-    
+    useEffect(() => {
+        const desktopDataAPI = async () => {
+            setPostsLoading(true)
+            const postsRequest = await globalService('GetColumns',boardID);
+            setColumns(postsRequest.columns);
+            setBoardTitle(postsRequest.boardTitle)
+            setPostsLoading(false)
+         }
+         desktopDataAPI();
+       }, []);
     const activeModal = () => {
         setModalActive(true)
     }
@@ -46,6 +50,7 @@ const DeskTop = () => {
             tasks:[]
         }
         setColumns([...columns, newColumn])
+        setNewColumns([...newColumns, newColumn.columnId])
     }
     const addNewTaks = (e) => {
         e.preventDefault()
@@ -53,29 +58,47 @@ const DeskTop = () => {
             taskId: Date.now(),
             taskTitle,
             taskDescription,
-            columnId:0,
+            
         }
         columns[0].tasks.push(newTask)
         setColumns(columns)
         setModalActive(false)
         setTaskTitle('')
         setTaskDescription('')
+
     }
 
-    
 
     function activeContentColumns(){
-        
+        let boolen = false
         for(let k of columns){
             if(k.columnTitle === ''){
                 setActive(true)
+                boolen = false
             }
             else{
                 setActive(false)
+                boolen = true
             }
         }
+
         if (columns.length === 0){
             setActive(false)
+        }
+        if(boolen === true && columns.length !== 0){
+            for(let k of columns){
+                if( newColumns.find((i) => i === k.columnId) !== -1){
+                  delete k.columnId
+                }
+            }
+            const data = {columns:columns, boardId: +query.BoardID}
+            const updateColumns = async (data) => {
+                setPostsLoading(true)
+                const postsRequest = await globalService('updateColumns',data);
+                setColumns(postsRequest[1].columns);
+                setPostsLoading(false)
+            }
+            updateColumns(data);
         }
     }
 
@@ -83,6 +106,7 @@ const DeskTop = () => {
     function activeContentAddColumn(e){
         e.preventDefault()
         setActive(true)
+
     }
 
 
@@ -124,8 +148,8 @@ const DeskTop = () => {
     
     
       function dropCardHandler(e,board){
-        const currentId = board.tasks.map(item => item.id)
-        if (!currentId.includes(currentItem.id)) {
+        const currentId = board.tasks.map(item => item.taskId)
+        if (!currentId.includes(currentItem.taskId)) {
          board.tasks.push(currentItem)
          const currentIndex = currentBoard.tasks.indexOf(currentItem)
          currentBoard.tasks.splice(currentIndex, 1)
@@ -140,11 +164,9 @@ const DeskTop = () => {
          }))
       }
       }
+      
 //===============================
 
-
-    
-    
     const right = (e, columnOrder ) => {
         e.preventDefault()
         setColumns(columns.map( column => {
@@ -191,29 +213,29 @@ const DeskTop = () => {
         <div className={classes.container}>
             <Header />
 
-            <InlineBlock />
+            <InlineBlock boardTitle={boardTitle}/>
             
             {active
             ?<AddColumn
-            setTitle={setTaskTitle}
+            setTaskTitle={setTaskTitle}
             right={right} 
             left={left}
             sortCards={sortCards}
             sortColumns={sortColumns}
+            activeContentColumns={activeContentColumns}
             columns={columns} 
-            active={activeContentColumns}
             setColumns={setColumns}
             addNewColumn={addNewColumn} 
             />
 
 
             :<ChangeColumns
-            comment={taskDescription}
-            columnTitle={taskTitle}
+            taskDescription={taskDescription}
+            taskTitle={taskTitle}
             activeModal={activeModal} 
             columns={columns} 
             setColumns={setColumns} 
-            active={activeContentAddColumn}
+            activeContentAddColumn={activeContentAddColumn}
             dragOverHandler={dragOverHandler}
             dragLeaveHandler={dragLeaveHandler}
             dragStartHandler={dragStartHandler}
@@ -225,14 +247,15 @@ const DeskTop = () => {
             }
 
             <ModalColumn 
-            comment={taskDescription}
-            setComment={setTaskDescription}
-            columnTitle={taskTitle}
-            setTitle={setTaskTitle}
+            taskDescription={taskDescription}
+            setTaskDescription={setTaskDescription}
+            taskTitle={taskTitle}
+            setTaskTitle={setTaskTitle}
             addNewTaks={addNewTaks}
-            setActive={setModalActive} 
-            active={modalActive}/>
-
+            setModalActive={setModalActive} 
+            modalActive={modalActive}
+            />
+            <Loading postsLoading={postsLoading}/>  
         </div>
 
     )

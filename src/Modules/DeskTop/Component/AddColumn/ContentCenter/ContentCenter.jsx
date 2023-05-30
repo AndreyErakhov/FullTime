@@ -4,10 +4,10 @@ import PlusBoard from './../img/PlusBoard.svg'
 import Columns from '../../Columns/Columns'
 
 
-const ContentCenter = (props) => {
+const ContentCenter = ({columnTitle,setTaskTitle,left,sortColumns,right,addNewColumn,columns,activeContentColumns,setColumns,sortCards}) => {
 
     const removePost = (post) => {
-        let array = props.columns.reverse()
+        let array = columns.reverse()
         for( let col of array){
             if(col.columnOrder === post.columnOrder){
                 break
@@ -16,42 +16,41 @@ const ContentCenter = (props) => {
             }
         }
         array = array.reverse() 
-       props.setColumns(array.filter(p => p.columnId !== post.columnId))
+       setColumns(array.filter(p => p.columnId !== post.columnId))
        
     }
     
+
     
     return(
         <div className={classes.content} >
-            <div className={ props.columns.length ? classes.content__columns : classes.content__block}>
+            <div className={ columns.length ? classes.content__columns : classes.content__block}>
                 <div className={classes.content__columns__center}>
                     <div className={clasColumns.block__columns}>
-                    {props.columns.sort(props.sortColumns).map(column => {
-                        
+                    {columns.sort(sortColumns).map(column => {
                         return <Columns 
-                        
-                        setTitle={props.setTitle}
-                        columnTitle={column.columnTitle}
+                        setTaskTitle={setTaskTitle}   
+                        columnTitle={columnTitle}
                         tasks={column.tasks}
-                        left={props.left}
-                        right={props.right}
-                        textValue={props.textValue} 
-                        setTextValue={props.setTextValue} 
+                        left={left}
+                        right={right}
+                        // textValue={textValue} 
+                        // setColumnTitle={setColumnTitle} 
                         remove={removePost} 
                         column={column}
-                        columns={props.columns} 
+                        columns={columns} 
                         key={column.columnId} 
-                        setColumns={props.setColumns}
-                        dragStartHendler={props.dragStartHendler}
-                        dragEndHandler={props.dragEndHandler}
-                        dragOverHandler={props.dragOverHandler}
-                        dropHandler={props.dropHandler}
-                        sortCards={props.sortCards}
+                        setColumns={setColumns}
+                        // dragStartHendler={props.dragStartHendler}
+                        // dragEndHandler={props.dragEndHandler}
+                        // dragOverHandler={props.dragOverHandler}
+                        // dropHandler={props.dropHandler}
+                        sortCards={sortCards}
                         />
                         })} 
                     </div>
-                    <div className={ props.columns.length ? classes.content__center : classes.content }>
-                        <button className={classes.content__btn} onClick={props.addNewColumn}>
+                    <div className={ columns.length ? classes.content__center : classes.content }>
+                        <button className={classes.content__btn} onClick={addNewColumn}>
                             <img src={PlusBoard}  alt='plus'/>
                             <p>Добавить столбец</p>
                         </button>

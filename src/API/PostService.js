@@ -25,43 +25,58 @@ async function globalService(num,reqest) {
         return await changePasswordRequest(reqest)
     }else if(num === 'GetColumns'){
         return await GetColumns(reqest)
+    }else if(num === 'updateColumns'){
+        return await updateColumns(reqest)
     }
 }
 
 async function GetColumns(boardId) {
     try {
     let token = GetCookie('token')
-    const boardRefresh = await axios.get(`http://130.193.48.184:3031/boards/${boardId.BoardID}`, {
+    const boardRefresh = await axios.get(`http://194.85.169.95:9224/boards/${boardId.BoardID}`, {
         headers: {
             Authorization: 'Bearer ' + token
         }
     }).then((resp) => resp.data )  
-        console.log(boardRefresh) 
         return boardRefresh
     } catch(error) {
-        return await APIErrorHandler(error, "BoardListRefresh");
+        return await APIErrorHandler(error, "GetColumns");
     }
 
+}
+
+async function updateColumns(formData) {
+    try {
+        let token = GetCookie('token')
+        const createAxios = await axios.post('http://194.85.169.95:9224/boards/columns', formData, {
+            headers: {
+                Authorization: 'Bearer ' + token
+                }
+        }).then((resp) => ['complete', resp.data] )
+        return createAxios
+    } catch(error) {
+        // return await APIErrorHandler(error,"updateColumns", formData);
+    }
 }
 
     async function getProfile() {
         try {
         let token = GetCookie('token')
-        const boardRefresh = await axios.get('http://130.193.48.184:3031/users/profile', {
+        const boardRefresh = await axios.get('http://194.85.169.95:9224/users/profile', {
             headers: {
                 Authorization: 'Bearer ' + token,
             }
         }).then((resp) => ['complete', resp.data])    
             return boardRefresh
         } catch (error) {
-            return await APIErrorHandler(error, "BoardListRefresh");
+            return await APIErrorHandler(error, "getProfile");
         }
     }
 
     async function BoardListRefresh() {
         try {
         let token = GetCookie('token')
-        const boardRefresh = await axios.get('http://130.193.48.184:3031/users/boards-list', {
+        const boardRefresh = await axios.get('http://194.85.169.95:9224/users/boards-list', {
             headers: {
                 Authorization: 'Bearer ' + token
             }
@@ -75,7 +90,7 @@ async function GetColumns(boardId) {
     async function deleteBoard(post) {
         try {
             let token = GetCookie('token')
-            const deleteUrl = 'http://130.193.48.184:3031/boards/' + post.boardId
+            const deleteUrl = 'http://194.85.169.95:9224/boards/' + post.boardId
             const boardRefresh12 = await axios.delete(deleteUrl, {
                 headers: {
                     Authorization: 'Bearer ' + token
@@ -91,7 +106,7 @@ async function GetColumns(boardId) {
     async function createBoard(formData) {
         try {
             let token = GetCookie('token')
-            const createAxios = await axios.post('http://130.193.48.184:3031/boards', formData, {
+            const createAxios = await axios.post('http://194.85.169.95:9224/boards', formData, {
                 headers: {
                     Authorization: 'Bearer ' + token
                     }
@@ -106,7 +121,7 @@ async function GetColumns(boardId) {
 async function signIn(userData){
     try {
         let token = GetCookie('token')
-        const signInAxios = await axios.post('http://130.193.48.184:3031/users/auth', userData,{
+        const signInAxios = await axios.post('http://194.85.169.95:9224/users/auth', userData,{
             headers: {
                 Authorization: 'Bearer' + token
             }
@@ -121,7 +136,7 @@ async function signIn(userData){
 async function createUser(registrationData){
     try {
         let token = GetCookie('token')
-        const createNewUserAxios = await axios.post('http://130.193.48.184:3031/users', registrationData,{
+        const createNewUserAxios = await axios.post('http://194.85.169.95:9224/users', registrationData,{
             headers: {
                 Authorization: 'Bearer' + token
             }
@@ -136,7 +151,7 @@ async function createUser(registrationData){
 async function verifyUser(verifyData){
     try {
         let token = GetCookie('token')
-        const verifyUserAxios = await axios.post('http://130.193.48.184:3031/verifications/register', verifyData,{
+        const verifyUserAxios = await axios.post('http://194.85.169.95:9224/verifications/register', verifyData,{
             headers: {
                 Authorization: 'Bearer' + token
             }
@@ -151,7 +166,7 @@ async function verifyUser(verifyData){
 async function forgottenPasswordRequest(emailData){
     try {
         let token = GetCookie('token')
-        const forgottenPasswordRequestAxios = await axios.patch('http://130.193.48.184:3031/users/password-reset', emailData,{
+        const forgottenPasswordRequestAxios = await axios.patch('http://194.85.169.95:9224/users/password-reset', emailData,{
             headers: {
                 Authorization: 'Bearer' + token
             }
@@ -170,7 +185,7 @@ async function forgottenPasswordRequest(emailData){
 async function changePasswordRequest(newPasswordData){
     try {
         let token = GetCookie('token')
-        const changePasswordRequestAxios = await axios.patch('http://130.193.48.184:3031/verifications/reset-password', newPasswordData,{
+        const changePasswordRequestAxios = await axios.patch('http://194.85.169.95:9224/verifications/reset-password', newPasswordData,{
             headers: {
                 Authorization: 'Bearer' + token
             }
@@ -193,7 +208,7 @@ async function reLoadToken() {
     if(!refreshToken){
         window.location.href = '/'
     }
-    await axios.patch('http://130.193.48.184:3031/users/auth', {
+    await axios.patch('http://194.85.169.95:9224/users/auth', {
         refreshToken: refreshToken,
     })
     .then((resp) => {

@@ -1,7 +1,7 @@
 .column {
     position: relative;
     animation: ani 2s forwards;
-    min-width: 230px;
+    min-width: 241px;
 }
 @keyframes ani {
     0% {opacity: 0;}
